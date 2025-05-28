@@ -36,6 +36,13 @@ pipeline {
     		}
 	}
 
+	tage('Deploy') {
+            steps {
+                echo 'Deploying the application (simulated)...'
+                sh 'java -jar target/java-maven-app-1.0-SNAPSHOT.jar'
+            }
+        }
+
         stage('Run') {
             steps {
                 echo 'Packaging application...'
@@ -49,5 +56,6 @@ pipeline {
                 sh 'java -jar target/*.jar'
             }
         }
+
     }
 }
