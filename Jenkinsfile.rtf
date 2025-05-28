@@ -8,9 +8,9 @@
 \f0\fs24 \cf0 pipeline \{\
     agent any\
 \
-	tools \{\
-	maven \'91Maven 3.9.9\'92\
-\}\
+    tools \{\
+        maven 'Maven3.9.9'\
+    \}\
 \
     stages \{\
         stage('Clone') \{\
@@ -26,16 +26,14 @@
                 sh 'mvn clean compile'\
             \}\
         \}\
-	\
-	stage(\'92Test\'92) \{\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0             steps \{\
-                echo 'Running Maven Test\'85\'92\
-                sh 'mvn clean test\'92\
+\
+        stage('Test') \{\
+            steps \{\
+                echo 'Running Maven Tests...'\
+                sh 'mvn clean test'\
             \}\
         \}\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \
+\
         stage('Run') \{\
             steps \{\
                 echo 'Executing Java App...'\
