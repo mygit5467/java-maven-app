@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Clone') {
             steps {
                 echo 'Cloning repository...'
@@ -15,22 +16,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Running Maven Build...'
+                echo 'Building the project...'
                 sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running Maven Tests...'
-                sh 'mvn clean test'
+                echo 'Running tests...'
+                sh 'mvn test'
             }
         }
 
-        stage('Run') {
+        stage('Package') {
             steps {
-                echo 'Executing Java App...'
-                sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
+                echo 'Packaging application...'
+                sh 'mvn package'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                sh 'java -jar target/*.jar'
             }
         }
     }
