@@ -28,7 +28,15 @@ pipeline {
             }
         }
 
-        stage('Package') {
+
+	stage('Package') {
+    	steps {
+        echo 'Packaging the application...'
+        sh 'mvn clean package'
+    		}
+	}
+
+        stage('Run') {
             steps {
                 echo 'Packaging application...'
                 sh 'mvn package'
